@@ -158,3 +158,140 @@ console.log(`Rezultat je ${someNumber}`);
 description = `(4 / 2) + (10 - 4) * 3`;
 
 console.log(description);
+
+
+// ! 2. cas JS-a (21. cas) (13.12.2022.)
+
+console.log('--------------- 2. cas JS-a (21. cas) (13.12.2022.) --------------');
+
+// uz string konkatinaciju
+
+someNumber = 53;
+let operationDesc = '(' + someNumber + ' / 2) + (10 - 4) * 3';
+
+console.log(operationDesc);
+
+let example = 'Hello ' + 'world';
+
+console.log(example);
+
+// uz template literals format:
+// (variable / 2) + (10 - 4) * 3;
+
+let templLiteralExample = `(${someNumber} / 2) + (10 - 4) * 3`;
+
+console.log(templLiteralExample);
+
+let goToNewLine = `My string going \nto new line`;
+
+console.log(goToNewLine);
+
+
+// TODO Zadatak za vezbu:
+/**
+ * 1. Kreirati dve varijable. Jedna neka bude tipa number i neka se zove 
+ *    userInputEx (na koju god vrednost je postavite) i druga neka se naziva 
+ *    result i nemojte je postaviti ni na kakvu vrednost.
+ * 2. Postavite result varijablu na vrednost userInputEx plus neki broj (npr 20).
+ * 3. U naredne 3 linije koda, varijablu result promenite u svakoj 
+ *    narednoj liniji koda operacijama oduzimanja, mnozenja i deljenja 
+ *    nad tom result varijablom i svaki put ispisati vrednost varijable 
+ *    na konzoli u formatu koji zelite s tim da pre toga stoji String 
+ *    `Current result is: `
+ * 4. Na kraju varijablu result ispisati u okviru alert prozora, 
+ *    a userInput varijablu ispisati samo na konzoli.
+*/
+
+let userInputEx = 100;
+let result;
+
+result = userInputEx + 20;
+
+result = (userInputEx / 20) * 2 - 1;
+
+console.log(`Current result is ${result}`);
+
+// alert(result);
+
+console.log(`User input example value is ${userInputEx}`);
+
+
+// ! Functions
+
+// broj parametara moze biti od 0..n
+function sayHi(name) { // name je parametar funkcije
+   alert(`Hi ${name}`);
+}
+
+// sayHi('Marko');
+
+// sayHi('Petar'); // 'Petar' je argument funkcije
+
+// sayHi('Marko Markovic');
+
+
+// TODO Zadatak za vezbu:
+
+/**
+ * Deklarisati funkciju koja treba da sabere dva broja i kao svoj rezultat
+ * vrati vrednost rezultata sabiranja u formatu: `Result is _RESULT_`
+ */
+
+/**
+ * Function which adds summates 2 numbers passed
+ * @param {Number} number1 
+ * @param {Number} number2 
+ * @returns string - result of operation
+ */
+function add(number1, number2) {
+   const addResult = number1 + number2;
+   return `Result is ${addResult}`;
+}
+
+console.log(add(10, 20));
+
+console.log(add(50, 50));
+
+// console.log(name); // undefined
+
+// alert(add(50, 100));
+
+
+// TODO Zadatak za vezbu
+
+/**
+ * 1. Napraviti funkciju square() koja ce broj prosledjen kao parametar
+ *    podici na kvadrat
+ * 2. Rezultat vratiti u formatu `Squared _number_ is _square-number_`
+ * 3. Pozvati funkciju sa nekom vrednoscu (npr 5)
+ */
+
+/**
+ * Function which takes a number and gives squared number back
+ * @param {Number} number 
+ * @returns string in format of squared number
+ */
+function square(number) {
+   // const squareResult = number * number;
+   const squareResult = number**2;
+   return `Squared ${number} is ${squareResult}`;
+}
+
+console.log(square(5));
+
+console.log(square(4));
+
+// c = 25;
+
+// let c;
+
+// ! kod od gore vraca Referentnu gresku
+
+function print() {
+   let testingVar = 5;
+   console.log(testingVar);
+}
+
+let testingVar = 'Hello World!';
+
+print();
