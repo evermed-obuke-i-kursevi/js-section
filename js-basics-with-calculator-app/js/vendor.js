@@ -6,6 +6,7 @@ const btnDivide = document.getElementById('btn-divide');
 const btnAdd = document.getElementById('btn-add');
 const btnSubtract = document.getElementById('btn-subtract');
 const btnClear = document.getElementById('btn-clear');
+const btnExponent = document.getElementById('btn-exponent');
 
 const currentResultOutput = document.querySelector('.js-current-calculation');
 const currentCalculationOutput = document.querySelector('.js-current-result');
