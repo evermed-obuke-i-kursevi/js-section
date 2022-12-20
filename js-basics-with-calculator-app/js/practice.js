@@ -370,7 +370,7 @@ resVar9 /= 15;
 console.log(resVar9); // 2
 
 
-// Incerement and decrement
+// Increment and decrement
 
 let j = 1;
 let i = j++;
