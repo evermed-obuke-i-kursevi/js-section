@@ -532,3 +532,169 @@ console.log(course.languages[course.languages.length-1]); // 'CSS3'
 randomVar = null;
 
 console.log(typeof randomVar);
+
+
+
+
+// ! 5. cas JS-a (24. cas) (22.12.2022.)
+
+console.log('--------------- 5. cas JS-a (24. cas) (22.12.2022.) --------------');
+
+// ! Operatori poredjenja
+
+// * 1. ==  -->  loose (slab) equality (poredi samo vrednosti)
+
+console.log(10.5 == 10.5); // poredjenje Number tipova
+
+console.log('Hello' == 'Hello'); // poredjenje Stringova
+
+console.log('Hello' == 'hello'); // false
+
+console.log(true == true); // poredjenje Boolean-a
+
+console.log(5 != 5); // false, jer 5 JESTE jednako 5 (po vrednosti)
+
+console.log('44' == 44); // true , jer se radi poredjenje SAMO PO VREDNOSTI
+
+
+// * 2. ===   -->  strict (jaci) equality (poredi i tipove i vrednosti)
+
+console.log(10.5 === 10.5); // true
+
+console.log(55 === '55'); // false , jer se radi poredjenje I PO TIPU I PO VREDNOSTI
+
+console.log('hey' !== 'hey'); // false, jer su isti i po tipu i po vrednosti
+
+console.log('hey' !== 'Hey'); // true, jer iako su isti po tipu nisu isti po vrednosti
+
+
+
+// * 3. > , < , >= , <=
+
+console.log(25 > 3); // true
+console.log(-15.3 < 0); // true
+console.log(5 >= 5); // true
+console.log(0 <= 0); // true
+console.log(999 < 1); // false
+console.log('5' > 3); // true
+
+
+
+// * NOT OPERATOR (!)
+
+console.log(`Not operator for 'false' returns: ${!false}`);
+console.log(`Not operator for 'true' returns ${!true}`);
+console.log(`20 > 10 with NOT operator returns ${!20 > 10}`);
+console.log(`3 === 3 with NOT operator returns ${!2 === 2}`);
+
+
+
+// * Poredjenje STRINGOVA
+
+console.log(`b > a = ${'b' > 'a'}`);
+console.log(`ab > aa = ${'ab' > 'aa'}`);
+
+
+
+// ! STATEMENTI (klauzule, blokovi)
+
+// 1. IF
+// 2. IF - ELSE
+// 3. IF - ELSE IF - ELSE
+
+
+// 1. IF
+
+if ('5' === 5) {
+   console.log(`petice su jednake`);
+}
+
+if (1 !== 1) {
+   console.log(`kecevi nisu jednaki`);
+}
+
+if (true) {
+   console.log('proslo');
+}
+
+
+// 2. IF - ELSE blok
+
+let broj = 100/100 - 1;
+
+if (broj > 0) {
+   console.log(`${broj} is bigger then zero`);
+} else {
+   console.log(`${broj} is less then zero`);
+}
+
+// 3. IF - ELSE IF - ELSE blok
+
+if (broj > 0) {
+   console.log(`${broj} is bigger then zero!`);
+} else if (broj < 0) {
+   console.log(`${broj} is less then zero!`);
+} else {
+   console.log(`${broj} is equal to zero!`);
+}
+
+
+// TODO Kroz PROMPT prozor ukucati neki broj i proveriti da li je taj broj veci/manji/jednak nuli i ispisati odgovarajucu poruku.
+
+const myNumber1 = prompt('Enter your number:');
+
+if (myNumber1 == 0) {
+   console.log(`Equal to 0`);
+} else if (myNumber1 < 0) {
+   console.log(`Less then 0`);
+} else {
+   console.log(`Greater then 0`);
+}
+
+
+// ! Ugnjezdeni IF - ELSE IF - ELSE blokovi
+
+if (myNumber1 >= 0) {
+   if (myNumber1 > 0) {
+      console.log('Positive');
+   } else {
+      console.log('Zero');
+   }
+} else {
+   console.log('Negative');
+}
+
+
+// ! Poredjenje objekata i nizova
+
+const ob1 = {
+   name: 'test'
+}
+
+const ob2 = {
+   name: 'test'
+}
+
+console.log(ob1 === ob2); // false
+
+const arr1 = ['test', 'test2'];
+
+const arr2 = ['test', 'test2'];
+
+console.log(arr1 === arr2); // false
+
+
+// TODO 5. cas domaci
+/**
+ * 1. Kreirati dve varijable tipa number sa vrednostima 30 i 50
+ * 2. Uporediti varijable koristeci == i === i rezultate poredjenja ispisati na konzoli
+ * 3. Uporediti varijable koristeci != i !== i rezultate poredjenja ispisati na konzoli
+ * 4. Rezultat poredjenja iz 2. zadatka invert-ovati uz NOT operator i ispisati na konzoli
+ * 5. Kreirati 3. varijablu sa vrednoscu '30' (tipa string)
+ * 6. Uporediti varijablu sa vrednoscu 30 (number) i '30' (string) pomocu oba tipa equality operatora
+ *    (== i ===), uporediti razlike rezultata poredjenja
+ * 7. Kreirati 4. varijablu (npr. promptAnswer) cija se vrednost dobija kroz prompt prozor browser-a
+ * 8. Vrednost varijable proveriti kroz if - else if - else uslove i shodno tome ispisati status o varijabli u formatu
+ *    `Value ${promptAnswer} is ________`
+*/
+
