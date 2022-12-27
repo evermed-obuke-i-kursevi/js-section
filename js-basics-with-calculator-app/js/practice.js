@@ -641,7 +641,7 @@ if (broj > 0) {
 
 // TODO Kroz PROMPT prozor ukucati neki broj i proveriti da li je taj broj veci/manji/jednak nuli i ispisati odgovarajucu poruku.
 
-const myNumber1 = prompt('Enter your number:');
+const myNumber1 = 3; // prompt('Enter your number:');
 
 if (myNumber1 == 0) {
    console.log(`Equal to 0`);
@@ -698,3 +698,235 @@ console.log(arr1 === arr2); // false
  *    `Value ${promptAnswer} is ________`
 */
 
+
+const variable1 = 30;
+const variable2 = 50;
+
+console.log(`variable1 is equal to variable 2: ${variable1 == variable2}`); // false
+console.log(`variable1 is equal to variable 2: ${variable1 === variable2}`); // false
+console.log(`variable1 is not equal to variable 2: ${variable1 != variable2}`); // true
+console.log(`variable1 is not equal to variable 2: ${variable1 !== variable2}`); // true
+
+const compareOfVars = variable1 === variable2;
+
+console.log(compareOfVars); // false
+console.log(!compareOfVars); // true  // ! Revert-ovan false u true pomocu ! znaka (NOT operatora)
+
+const variable3 = '30';
+
+console.log(`variable3 is equal to 30: ${variable3 === 30}`); // false
+console.log(`variable3 is equal to 30: ${variable3 == 30}`); // true
+
+const promptAnswer = prompt('Enter your value:');
+
+if (promptAnswer > 0) {
+    console.log(`Value ${promptAnswer} is positive.`);
+} else if (promptAnswer < 0) {
+    console.log(`Value ${promptAnswer} is negative.`);
+} else {
+    console.log(`Value is zero.`);
+}
+
+
+// ! 6. cas JS-a (25. cas) (27.12.2022.)
+
+console.log('--------------- 6. cas JS-a (25. cas) (27.12.2022.) --------------');
+
+// * visestruki logicki uslovi:
+
+// 1. logicko AND (&&) --> nalaze da svi logicki uslovi moraju biti zadovoljeni
+
+   // true + true ==> onda ovo daje TRUE
+   // true + false ==> onda ovo daje FALSE
+   // false + false ==> onda ovo daje FALSE
+
+// 2. logicko OR (||) --> kaze da BAR 1 od uslova mora biti zadovoljen (mora davati true bar 1)
+
+   // true + true ==> onda ovo daje TRUE
+   // true + false ==> onda ovo daje TRUE
+   // false + false ==> onda ovo daje FALSE
+
+broj = 8;
+
+if (broj < 0 && broj === -4) {
+   console.log(`Your number is ${broj}.`);
+}
+
+if (broj > 0 || broj === 0) {
+   console.log(`Number ${broj} is either greater than 0 or equal to it.`);
+}
+
+// ! logicko AND ima prioritet u odnosu na logicko || 
+
+if (broj > 0 && broj === 5 || broj === 8) {
+   console.log(`Condition is met`);
+}
+
+
+// ! Ternarni (kondicioni) operator
+
+let answer = broj < 0
+   ? `${broj} is less than 0` 
+   : `${broj} is equal to 0 or greater than 0`;
+
+console.log(`Answer is '${answer}'`);
+
+// * primer kombinovanja IF - ELSE bloka i ternarnog operatora
+if (broj < 0) {
+   console.log(`Less then 0`);
+} else {
+   let answer2 = broj === 0 ? 'Equal to zero' : 'Greater than 0';
+   console.log(answer2);
+}
+
+
+// ! THRUTY and FALSY values
+
+/**
+ * FALSY vrednosti: false, '', ``, "", 0, NaN, null, undefined
+ * THRUTY vrednosti: bilo sta sto nije ovo gore navedeno: 'Petar', true, 24, -44.33, itd.
+ */
+
+let value2 = ``;
+let value3 = '6. cas JS-a';
+
+if (value2) {
+   console.log(`Entered first block`);
+}
+
+if (value3) {
+   console.log(`Entered second block`);
+}
+
+broj = 0;
+
+let resOfOp = broj > 0 && broj === 8 
+   ? broj 
+   : '';
+
+if (resOfOp) {
+   console.log(`Entered third block`);
+}
+
+
+// ! Trikovi:
+
+// * 1. thruty ili falsy vrednosti mozemo pretvoriti u bukvalan TRUE ili FALSE
+
+someVar = !!resOfOp; // pretvaranje u TRUE ili FALSe (u zavisnosti od toga da li je prosledjena thruty ili falsy vrednost)
+
+console.log(`Result of check is ${someVar}`);
+
+
+// * 2. moguce je vrednost neke varijable dobiti na osnovu nekog logickog operatora
+
+// 2.1. primer sa logickim OR (||)
+
+let usersName = 'Bilo sta';
+
+let someValue = usersName || 'Mirko';
+
+console.log(`Value is ${someValue}`); // 'Value is Bilo sta'
+
+// 2.2 primer sa logickim AND (&&)
+
+let registeredUser = true;
+
+someValue = registeredUser && 'marko@gmail.com';
+
+console.log(`Value 2 is ${someValue}`); // 'Value 2 is marko@gmail.com'
+
+
+
+// ! SWITCH CASE-evi:
+
+const grade = 'A';
+
+switch(grade) {
+   case 1: 
+      console.log(`Math grade is ${grade} 😥`);
+      break;
+   case 2:
+      console.log(`Math grade is ${grade} 😣`);
+      break;
+   case 3:
+      console.log(`Math grade is ${grade} 😑`);
+      break;
+   case 4:
+      console.log(`Math grade is ${grade} 🙂`);
+      break;
+   case 5:
+      console.log(`Math grade is ${grade} 😁`);
+      break;
+   default:
+      console.log(`Math grade is ${grade}. Not in range between 1 and 5`);
+      break;
+}
+
+// if (grade === 1) {
+//    //
+// } else if (grade === 2) {
+//    //
+// } else if (grade === 3) {
+//    //
+// } else if (grade === 4) {
+//    //
+// } else if (grade === 5) {
+//    // 
+// } else {
+//    //
+// }
+
+
+// ! PETLJE (loops)
+
+/**
+ * 1. FOR petlja (sluzi za pozivanje nekog koda nekoliko puta u zavinosti od npr nekog brojaca)
+ * 2. FOR OF petlja (sluzi za pozivanje nekog koda nad svakim elementom nekog niza)
+ * 3. FOR IN petlja (sluzi za vracanje svih KEY-eva (kljuceva, naziva property-a) nekog objekta i evenutalno vrednosti vezane za te kljuceve)
+ * 4. WHILE petlja (sluzi za izvrsavanje nekog koda dokle god je neki logicki uslov zadovoljen)
+ * 5. DO-WHILE petlja
+ */
+
+// * 1. FOR petlja
+
+for(let counter = 1; counter <= 5; counter++) {
+   console.log(`Counter of current iteration is ${counter}`);
+}
+
+// Primer --> program koji racuna zbir prvih 100 prirodnih brojeva:
+
+let sum = 0;
+
+for(let i = 1; i <= 100; i++) {
+   sum += i;
+}
+
+console.log(`Zbir prirodnih brojeva od 1 do 100 je ${sum}`);
+
+
+// * 2. FOR OF petlja
+
+const programmingLanguages = ['Java', 'JS', 'C#', 'Python', 'C']; // 5
+
+console.log(programmingLanguages);
+
+for(let j = 0; j < programmingLanguages.length; j++) {
+   console.log(`Language: ${programmingLanguages[j]}`)
+}
+
+
+// FOR OF:
+
+for (let prLanguage of programmingLanguages) {
+   console.log(`Language is: ${prLanguage}`);
+}
+
+
+// ! 6. cas homework:
+
+/**
+ * 1. Pokusati prepraviti kod iz app.js-a (calculator app):
+ *  a) Prvo uz IF-ELSE blokove
+ *  b) Pa onda uz Switch case-ove
+*/

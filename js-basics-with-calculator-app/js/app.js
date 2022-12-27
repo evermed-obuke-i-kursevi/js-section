@@ -22,49 +22,129 @@ function writeToOperationsHistory(typeOfOperation, previousResult, enteredNumber
     console.log(logOfOperations);
 }
 
-// Adding (sabiranje)
+// ! Version 1 - Without IF - ELSE or SWITCH methods
+// // Adding (sabiranje)
+// function add() {
+//     const enteredNumber = getUserInput();
+//     const initResult = currentResult;
+//     currentResult += enteredNumber; // 0 + 55 = 55
+//     writeOutput('+', initResult, enteredNumber);
+//     writeToOperationsHistory('ADDING', initResult, enteredNumber, currentResult);
+// }
+
+// // Subtract (oduzimanje)
+// function subtract() {
+//     const enteredNumber = getUserInput();
+//     const initResult = currentResult;
+//     currentResult -= enteredNumber; // 5 - 3 = 2
+//     writeOutput('-', initResult, enteredNumber);
+//     writeToOperationsHistory('SUBTRACT', initResult, enteredNumber, currentResult);
+// }
+
+// // Multiply (mnozenje)
+// function multiply() {
+//     const enteredNumber = getUserInput();
+//     const initResult = currentResult;
+//     currentResult *= enteredNumber; // 3 * 3 = 9
+//     writeOutput('*', initResult, enteredNumber);
+//     writeToOperationsHistory('MULTIPLY', initResult, enteredNumber, currentResult);
+// }
+
+// // Divide (deljenje)
+// function divide() {
+//     const enteredNumber = getUserInput();
+//     const initResult = currentResult;
+//     currentResult /= enteredNumber; // 4 / 2 = 2
+//     writeOutput('/', initResult, enteredNumber);
+//     writeToOperationsHistory('DIVIDE', initResult, enteredNumber, currentResult);
+// }
+
+// // EXPONENTIATION (na n-ti)
+// function exponentiation() {
+//     const enteredNumber = getUserInput();
+//     const initResult = currentResult;
+//     currentResult **= enteredNumber; // 2 ** 3 = 8
+//     writeOutput('**', initResult, enteredNumber);
+//     writeToOperationsHistory('EXPONENTIATION', initResult, enteredNumber, currentResult);
+// }
+
+// ! Version 2 - with IF - ELSE IF - ELSE blocks
+
+// function mathOperation(operationType) {
+//     const enteredNumber = getUserInput();
+//     const initialResult = currentResult;
+//     let operationSign = '';
+//     if(operationType === 'PLUS') {
+//         currentResult += enteredNumber;
+//         operationSign = '+';
+//     } else if(operationType === 'SUBTRACT') {
+//         currentResult -= enteredNumber;
+//         operationSign = '-';
+//     } else if(operationType === 'MULTIPLY') {
+//         currentResult *= enteredNumber;
+//         operationSign = '*';
+//     } else if(operationType === 'DIVIDE') {
+//         currentResult /= enteredNumber;
+//         operationSign = '/';
+//     } else {
+//         currentResult **= enteredNumber;
+//         operationSign = '**';
+//     }
+//     writeOutput(operationSign, initialResult, enteredNumber);
+//     writeToOperationsHistory(operationType, initialResult, enteredNumber, currentResult);
+// }
+
+
+// ! Version 3 - SWITCH CASE version
+
+function mathOperation(operationType) {
+    const enteredNumber = getUserInput();
+    const initialResult = currentResult;
+    let operationSign = '';
+    switch(operationType) {
+        case 'PLUS':
+            currentResult += enteredNumber;
+            operationSign = '+';
+            break;
+        case 'SUBTRACT':
+            currentResult -= enteredNumber;
+            operationSign = '-';
+            break;
+        case 'MULTIPLY':
+            currentResult *= enteredNumber;
+            operationSign = '*';
+            break;
+        case 'DIVIDE':
+            currentResult /= enteredNumber;
+            operationSign = '/';
+            break;
+        default:
+            currentResult **= enteredNumber;
+            operationSign = '**';
+            break;
+    }
+    writeOutput(operationSign, initialResult, enteredNumber);
+    writeToOperationsHistory(operationType, initialResult, enteredNumber, currentResult);
+}
+
 function add() {
-    const enteredNumber = getUserInput();
-    const initResult = currentResult;
-    currentResult += enteredNumber; // 0 + 55 = 55
-    writeOutput('+', initResult, enteredNumber);
-    writeToOperationsHistory('ADDING', initResult, enteredNumber, currentResult);
+    mathOperation('PLUS');
 }
 
-// Subtract (oduzimanje)
 function subtract() {
-    const enteredNumber = getUserInput();
-    const initResult = currentResult;
-    currentResult -= enteredNumber; // 5 - 3 = 2
-    writeOutput('-', initResult, enteredNumber);
-    writeToOperationsHistory('SUBTRACT', initResult, enteredNumber, currentResult);
+    mathOperation('SUBTRACT');
 }
 
-// Multiply (mnozenje)
 function multiply() {
-    const enteredNumber = getUserInput();
-    const initResult = currentResult;
-    currentResult *= enteredNumber; // 3 * 3 = 9
-    writeOutput('*', initResult, enteredNumber);
-    writeToOperationsHistory('MULTIPLY', initResult, enteredNumber, currentResult);
+    mathOperation('MULTIPLY');
 }
 
-// Divide (deljenje)
 function divide() {
-    const enteredNumber = getUserInput();
-    const initResult = currentResult;
-    currentResult /= enteredNumber; // 4 / 2 = 2
-    writeOutput('/', initResult, enteredNumber);
-    writeToOperationsHistory('DIVIDE', initResult, enteredNumber, currentResult);
+    mathOperation('DIVIDE');
 }
 
-// EXPONENTIATION (na n-ti)
 function exponentiation() {
-    const enteredNumber = getUserInput();
-    const initResult = currentResult;
-    currentResult **= enteredNumber; // 2 ** 3 = 8
-    writeOutput('**', initResult, enteredNumber);
-    writeToOperationsHistory('EXPONENTIATION', initResult, enteredNumber, currentResult);
+    mathOperation('EXPONENTIATION');
 }
 
 // clear (resets: current result, input of user, deletes the log and outputs)
