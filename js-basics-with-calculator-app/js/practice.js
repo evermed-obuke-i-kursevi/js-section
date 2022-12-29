@@ -717,7 +717,7 @@ const variable3 = '30';
 console.log(`variable3 is equal to 30: ${variable3 === 30}`); // false
 console.log(`variable3 is equal to 30: ${variable3 == 30}`); // true
 
-const promptAnswer = prompt('Enter your value:');
+const promptAnswer = 3; //prompt('Enter your value:');
 
 if (promptAnswer > 0) {
     console.log(`Value ${promptAnswer} is positive.`);
@@ -930,3 +930,356 @@ for (let prLanguage of programmingLanguages) {
  *  a) Prvo uz IF-ELSE blokove
  *  b) Pa onda uz Switch case-ove
 */
+
+
+// ! 7. cas JS-a (26. cas) (29.12.2022.)
+
+console.log('--------------- 7. cas JS-a (26. cas) (29.12.2022.) --------------');
+
+const greetings = 'Welcome!';
+
+for(let letter of greetings) {
+   console.log(letter);
+}
+
+
+// * 3. FOR IN petlja
+
+const someUser = {
+   name: 'Pera Peric',
+   email: 'pera@gmail.com',
+   age: 22,
+   student: true
+}
+
+
+for(let prop in someUser) {
+   console.log(prop);
+}
+
+console.log(`Age of student is ${someUser.age}`); // 1. nacin pristupa property-u (vrednosti)
+
+console.log(`Name of student is ${someUser['name']}`); // 2. nacin pristupa property-u (vrednosti)
+
+
+for(let key in someUser) {
+   console.log(`${key}: ${someUser[key]}`); // dinamicko dobavljanje vrednosti vezane za svaki key u objektu
+}
+
+
+// * Kombinacija FOR OF i FOR IN loop-a
+
+const bankAccountTest = {
+   owner: 'Petar Petrovic',
+   pin: 4424,
+   phone: '0661623123',
+   transactions: [300, -250, 500, -150, 1000]
+}
+
+for(let prop in bankAccountTest) {
+   console.log(`${prop}: ${bankAccountTest[prop]}`);
+   if (prop === 'transactions') {
+      const transactionsArr = bankAccountTest.transactions;
+      for(let i = 0; i < transactionsArr.length; i++) {
+         console.log(`Transaction ${i+1}. = ${transactionsArr[i]}`);
+      }
+   }
+}
+
+
+// * WHILE petlja
+
+let isUserLoggedIn = true;
+let m = 0;
+
+// ! primer beskonacne petlje , jer je logicki uslov UVEK zadovoljen
+// while(isUserLoggedIn) {
+//    console.log(m);
+//    m++;
+// }
+
+while(m < 5) {
+   console.log(`M variable is equal to: ${m}`);
+   m++;
+}
+
+console.log(`M is ${m}`); // M is 5
+
+// * DO WHILE petlja
+
+m = 0;
+
+do {
+   console.log(m);
+   m++;
+} while(m <= 5);
+
+console.log(`Now M is ${m}`); // Now M is 6
+
+
+// * BREAK and CONTINUE
+
+// * break - sluzi da prekinemo neku petlju u odredjenoj iteraciji (u odredjenom momentu)
+
+for (let j = 5; j > 0; j--) {
+   if (j === 3) {
+      break;
+   }
+   console.log(`j is ${j}`);
+}
+
+
+// * continue - sluzi ako hocemo da preskocimo odredjenu iteraciju ako je neki logicki uslov zadovoljen
+
+for (let u = 0; u < 5; u++) {
+   if (u === 3) {
+      continue;
+   }
+   console.log(`u is ${u}`);
+}
+
+
+
+// ! TRY , CATCH, FINALLY blokovi
+
+try {
+   console.log(marko);
+   // console.log(m);
+} catch(error) {
+   console.log(error.name + ' ---> ' + error.message);
+} finally {
+   console.log(`Always running finally block!`);
+}
+
+console.log('Dobar dan');
+
+
+// ! PRIMITIVNI (vrednosni) i REFERENTNI TIPOVI
+
+// ! Primitivni tipovi podataka nalaze se na STACK memoriji (number, string, boolean, symbol, undefined, null)
+
+let s = 1;
+let f = 1;
+
+console.log(s === f); // number
+
+let st1 = 'cao';
+let st2 = 'cao';
+
+console.log(st1 === st2); // string
+
+let b1 = false;
+let b2 = false;
+
+console.log(b1 === b2); // true
+
+
+// ! Referentni tipovi - objects i arrays (cuvaju se na HEAP memoriji)
+
+let referenceObj = {
+   firstName: 'Sara',
+   lastName: 'Saric'
+}
+
+let copyObject = {
+   firstName: 'Sara',
+   lastName: 'Saric'
+}
+
+copyObject.age = 22;
+
+console.log(referenceObj === copyObject);
+
+let nizTest1 = [1,2,3];
+
+let nizTest2 = [1,2,3];
+
+console.log(nizTest1 === nizTest2);
+
+
+// * Kopiranje vrednosti kod PRIMITIVNIH (vrednosnih) TIPOVA:
+
+let h = 7;
+let g = h;
+
+console.log(`H is ${h}`);
+console.log(`G is ${g}`);
+
+console.log(g === h);
+
+
+// * Kopiranje vrednosti kod REFERENTNIH (slozenih) TIPOVA:
+
+let originalObject = {
+   age: 44
+}
+
+let copyOfOriginal = originalObject;
+
+console.log(copyOfOriginal === originalObject);
+
+originalObject.city = 'Novi Sad';
+
+console.log(originalObject);
+console.log(copyOfOriginal);
+
+
+const originalNiz = [1,2,3];
+
+const copyNiz = originalNiz;
+
+// console.log(copyNiz);
+// console.log(originalNiz);
+
+originalNiz.push(4);
+
+console.log(copyNiz);
+console.log(originalNiz);
+
+
+
+function logNumber(number) {
+   console.log(number);
+}
+
+function sumFunc(x,y) {
+   let z = x+y;
+   logNumber(z);
+}
+
+sumFunc(5,10);
+
+
+// 7. cas JS-a homework:
+
+// 1. Uporediti vrednost kreirane varijable (const someNum = prompt('Please enter your number')) pomocu ternarnog operatora tako da se ispise da li je broj pozitivan ili negativan
+// 2. Dodati OR (||) logicki operator kako bi se proverilo da li je someNum vrednost nula ili veca od nule i rezultat ispisati na konzoli zajedno
+// 3. Dodati breakpoint u prethodnom izvrsavanju if bloka i utvrditi potencijalnu gresku na osnovu iscitavanja vrednosti
+
+// 4. za svaku liniju koda u nastavku ispisati sta vraca:
+// 
+//     const userEmail = 'marko@gmail.com';
+//     const backupEmail = '';
+//     console.log(userEmail === 'marko@gmail.com');
+//     console.log(userEmail);
+
+//     console.log(userEmail || null);
+//     console.log(backupEmail || 'milan@gmail.com');
+//     console.log(backupEmail || '');
+//     console.log(backupEmail || null || 'petar@gmail.com');
+
+//     console.log(userEmail && 'petar@gmail.com');
+//     console.log(backupEmail && 'petar@gmail.com');
+//     console.log(userEmail && ''); 
+//  
+//
+
+// 5. Kreirati varijablu "dayOfTheWeek" i postaviti na danasnji dan (hardkodovati, npr: 'tuesday'). Promeniti case-ove switch opcijom i u skladu sa tim ispisati vrednost na konzoli.
+
+// 6. Ispisati proizvod svih brojeva od 1 do 10
+
+// 7. Kreirati niz "foreignLanguages" i 3 jezika dodati u njega. Svaki jezik treba da ima svoj naziv i recenicu na tom jeziku. 
+
+// 8. Nakon toga, proci kroz niz jezika i ispisati svaki element u formatu:
+//    'Here is a sentence on LANGUAGE_NAME : LANGUAGE_SENTENCE'
+
+// 9. Za PRVI jezik iz foreignLanguages dodati (nalepiti) jos jedan property -> teachers niz nastavnika koji predaju jezik (3). 
+// Za svakog od nastavnika napraviti property firstName i lastName i dodeliti neke vrednosti.
+
+// 10. Ispisati redni broj nastavnika te njegovo ime i prezime i taj jezik koji predaje u formatu:
+// Teacher number BROJ : IME PREZIME is teaching JEZIK
+
+// 1. zadatak
+
+const someNum = prompt('Please enter your number:');
+
+let answerSomeNum = someNum > 0 ? `${someNum} is positive!` : `${someNum} is negative!`;
+
+console.log(`1. zadatak: ${answerSomeNum}`);
+
+// 2. i 3. zadatak
+
+if(someNum === 0 || someNum > 0) {
+  console.log(`${someNum} is either equal to 0 or positive value!`);
+}
+
+// 4. zadatak
+
+const userEmail = 'marko@gmail.com';
+const backupEmail = '';
+console.log(userEmail === 'marko@gmail.com'); // ! vraca -> true
+console.log(userEmail); // ! vraca -> 'marko@gmail.com'
+
+console.log(userEmail || null); // ! vraca -> 'marko@gmail.com'
+console.log(backupEmail || 'milan@gmail.com'); // ! vraca -> 'milan@gmail.com'
+console.log(backupEmail || ''); // ! vraca -> ''
+console.log(backupEmail || null || 'petar@gmail.com'); // ! vraca -> 'petar@gmail.com'
+
+console.log(userEmail && 'petar@gmail.com'); // ! vraca -> 'petar@gmail.com'
+console.log(backupEmail && 'petar@gmail.com'); // ! vraca -> ''
+console.log(userEmail && ''); // ! vraca -> ''
+
+
+
+// 5. zadatak
+
+const dayOfTheWeek = 'tuesday';
+
+switch(dayOfTheWeek) {
+  case 'monday':
+      console.log(`Today is Monday!`);
+      break;
+  case 'tuesday':
+      console.log(`Today is Tuesday!`);
+      break;
+  case 'wednesday':
+      console.log(`Today is Wednesday!`);
+      break;
+  case 'thursday':
+      console.log(`Today is Thursday!`);
+      break;
+  case 'friday':
+      console.log(`Today is Friday!`);
+      break;
+  case 'saturday':
+      console.log(`Today is Saturday!`);
+      break;
+  case 'sunday':
+      console.log(`Today is Sunday!`);
+      break;
+}
+
+// 6. zadatak
+
+let multiplyResult = 1;
+
+for(let j = 1; j <= 10; j++) {
+  multiplyResult *= j;
+}
+
+console.log(`Result of multiplying first 10 numbers ${multiplyResult}`); // Result of multiplying first 10 numbers 3628800
+
+
+// 7. zadatak
+const foreignLanguages = [
+  {name: 'English', sentence: 'This is some sentence on English.'},
+  {name: 'German', sentence: 'JS ist sehr gut.'},
+  {name: 'Latin', sentence: 'Lorem ipsum dolor sit amet.'}
+];
+
+// 8. zadatak
+for(let language of foreignLanguages) {
+  console.log(`Here is a sentence on ${language.name} : ${language.sentence}`);
+}
+
+// 9. zadatak
+foreignLanguages[0].teachers = [
+  {firstName: 'Marko', lastName: 'Markovic'},
+  {firstName: 'Petar', lastName: 'Petrovic'},
+  {firstName: 'Sara', lastName: 'Saric'}
+]
+
+// 10. zadatak
+for(let i=0; i < foreignLanguages[0].teachers.length; i++) {
+  console.log(`Teacher number ${i+1}: ${foreignLanguages[0].teachers[i].firstName} ${foreignLanguages[0].teachers[i].lastName} is teaching ${foreignLanguages[0].name}`);
+}
