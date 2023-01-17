@@ -1191,7 +1191,9 @@ sumFunc(5,10);
 
 // 1. zadatak
 
-const someNum = prompt('Please enter your number:');
+// const someNum = prompt('Please enter your number:');
+
+const someNum = 10;
 
 let answerSomeNum = someNum > 0 ? `${someNum} is positive!` : `${someNum} is negative!`;
 
@@ -1283,3 +1285,185 @@ foreignLanguages[0].teachers = [
 for(let i=0; i < foreignLanguages[0].teachers.length; i++) {
   console.log(`Teacher number ${i+1}: ${foreignLanguages[0].teachers[i].firstName} ${foreignLanguages[0].teachers[i].lastName} is teaching ${foreignLanguages[0].name}`);
 }
+
+
+// ! 8. cas JS-a (27. cas) (17.01.2023.)
+
+console.log('--------------- 8. cas JS-a (27. cas) (17.01.2023.) --------------');
+
+
+const personObj = {
+   name: 'Marko Markovic',
+   sayHello: function() {
+      console.log(`Good morning!`); // ! Ovo je sada METODA objekta personObj
+   }
+}
+
+console.log(personObj.sayHello());
+
+
+// * Function Declaration (deklaracija funkcija)
+
+function mojaFunkcija(x) {
+   return `Kvadratni koren od ${x} je ${Math.sqrt(x)}`;
+}
+
+console.log(mojaFunkcija(25));
+
+// * Function Expression (ekspresija funkcija) --> dozvoljava smestanje funkcija u varijable
+
+const mojaFunkcija1 = function(x, y) {
+   return x*y;
+}
+
+console.log(mojaFunkcija1(5,2));
+
+const printPersonName = function(person) {
+   return `Person's name is ${person.name}`;
+}
+
+console.log(printPersonName(personObj));
+
+
+/**
+ * Razlika izmedju function expression-a i function declaration-a je u Hoistingu.
+ * 
+ */
+
+// console.log(getCurrentYear()); // ! Cannot access 'getCurrentYear' before initialization
+
+const getCurrentYear = function() {
+   const date = new Date();
+   return date.getFullYear();
+}
+
+console.log(getCurrentYear()); // ! mozemo pristupiti getCurrentYear funkciji (tj pozvati je) SAMO nakon njene deklaracije
+
+
+console.log(getRandomNumber());
+
+function getRandomNumber() {
+   return Math.random();
+}
+
+
+// ! Anonimne funkcije --> najcesce se koriste kao callback funkcije drugih funkcija (setTimeout-a, setInterval-a, nekog event listener-a)
+
+setTimeout(function() {
+   console.log(`Testing anonymous function`);
+}, 2000);
+
+// setInterval(function() {
+//    console.log(`Testing set Interval`);
+// }, 3000);
+
+const btnClickMe = document.getElementById('btn-click-me');
+
+// btnClickMe.addEventListener('click', function() {
+//    console.log(`Button is clicked`);
+// });
+
+btnClickMe.addEventListener('click', function btnClickedMeHandler() {
+   console.log(`Button is clicked`);
+});
+
+
+
+// ! Arrow funkcije ( => )
+
+const myFirstArrowFunction = (s, v) => {
+   return s+v;
+}
+
+console.log(`Result is ${myFirstArrowFunction(30,40)}`);
+
+
+// Dodatni primer arrow funkcija:
+
+const mySecondArrowFunction = (x, y) => x+y;
+
+console.log(`Another result is ${mySecondArrowFunction(100,200)}`);
+
+// const testArrowFunc = (x,y) => { // * ovo je validna sintaksa
+//    const zbir = x+y;
+//    return zbir;
+// }
+
+const arrowFuncNoParams = () => {
+   console.log(`No params arrow func`);
+}
+
+arrowFuncNoParams();
+
+const arrowFuncNoParams2 = () => console.log(`No params arrow func 2`);
+
+arrowFuncNoParams2();
+
+const arrowFuncWithOneParam = (z) => z**3;
+
+console.log(arrowFuncWithOneParam(2));
+
+const arrowFuncWithOneParam2 = (z) => {
+   return z**3;
+}
+
+console.log(arrowFuncWithOneParam2(2));
+
+
+const arrowFuncWithOneParam3 = z => z**3;
+
+console.log(arrowFuncWithOneParam3(3));
+
+
+/*
+    1. Prepraviti sledecu funkciju:
+ * 
+ *          function sumUp(a, b) {
+ *              return a + b;
+ *          } 
+ * 
+ *     u format ARROW funkcije.
+ * 
+ *  2. U istu funkciju (sumUp) za parametar b dodati default vrednost, koja ce biti koriscena u slucaju da se vrednost
+ *      ne prosledi (npr 10).
+ * 
+ *  3. Kreirati u DOM-u dva button-a (Start Counting i Stop Counting).
+ *  4. Kreirati po jedan event za ta oba button-a.
+ *  5. Kada se klikne start counting button, na svaki sekund neka se na konzoli ispise trenutna vrednost counter-a.
+ *  6. U momentu kada se klikne na stop counting button, ispisivanje na konzoli counter-a treba da prestane.
+*/
+
+// const sumUp = (a, b) => { // * 1. nacin
+//    return a+b;
+// }
+
+const sumUp = (a, b) => a+b; // * 2. nacin
+
+console.log(sumUp(25,35));
+
+const sumUp2 = (a, b=10) => a*b; // ! primer default parametra (vrednost koja se koristi kao backup originalne vrednosti ako ta originalna vrednost nije prosledjena pri pozivu funkcije)
+
+console.log(sumUp2(10,2));
+
+console.log(sumUp2(10)); // NaN
+
+
+// * 3.
+
+let myCounter = 0;
+let stopCounting = false;
+const btnStart = document.getElementById('btn-start-count');
+const btnStop = document.getElementById('btn-stop-count');
+
+btnStart.addEventListener('click', function increaseCounter() {
+   setInterval(function() {
+      if (!stopCounting) {
+         ++myCounter;
+         console.log(`Counter is ${myCounter}`);
+      }
+   },1000);
+})
+
+btnStop.addEventListener('click', function stopCounter() {
+   stopCounting = true;
+})
