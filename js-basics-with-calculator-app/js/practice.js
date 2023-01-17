@@ -1466,4 +1466,4 @@ btnStart.addEventListener('click', function increaseCounter() {
 
 btnStop.addEventListener('click', function stopCounter() {
    stopCounting = true;
-})
+});
