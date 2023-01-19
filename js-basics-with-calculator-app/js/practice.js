@@ -1467,3 +1467,335 @@ btnStart.addEventListener('click', function increaseCounter() {
 btnStop.addEventListener('click', function stopCounter() {
    stopCounting = true;
 });
+
+
+
+// ! 9. cas JS-a (28. cas) (19.01.2023.)
+
+console.log('--------------- 9. cas JS-a (28. cas) (19.01.2023.) --------------');
+
+
+// ! NIZOVI (ARRAYS)
+
+// 1. nacin i najcesci za kreiranje niza u JS-u
+
+const arrayOfNumbers = [5,10,15];
+
+console.log(arrayOfNumbers);
+
+
+// 2. nacin kreiranja niza
+
+const arrayOfNumbersWithConstructor = new Array(5,6,7);
+
+console.log(arrayOfNumbersWithConstructor);
+
+
+// mozete mix-ovati tipove podataka u nekom nizu:
+
+const mixedExampleArr = [
+   10,
+   'Hello',
+   false,
+   {
+      name: 'Sara Saric',
+      age: 30
+   }
+]
+
+console.log(mixedExampleArr);
+
+const nestedExampleArr = [
+   [6,7,8],
+   ['Java', 'JS']
+]
+
+console.log(nestedExampleArr);
+
+
+for(let array of nestedExampleArr) {
+   for(let value of array) {
+      console.log(value);
+   }
+}
+
+
+
+// ! ARRAY FUNKCIJE
+
+// ! 1. PUSH -> dodaje element na kraj niza i vraca novu duzinu niza
+
+const pushArrayExample = [1,2,3,4,5];
+
+let pushArrayLength = pushArrayExample.push(6);
+
+console.log(`Array ${pushArrayExample} has length of ${pushArrayLength} after calling push.`);
+
+
+// ! 2. UNSHIFT -> dodaje element na pocetak niza i vraca novu duzinu niza
+
+pushArrayLength = pushArrayExample.unshift(0);
+
+console.log(pushArrayLength);
+
+
+// ! 3. POP -> uklanja element sa kraja niza, ali i vraca sam element koji je izbacen sa kraja niza
+
+let removedElement = pushArrayExample.pop();
+
+console.log(`Poped element is ${removedElement}`);
+
+
+// ! 4. SHIFT -> uklanja element sa pocetka niza, ali i vraca sam element koji je izbacen sa pocetka niza
+
+removedElement = pushArrayExample.shift();
+
+console.log(`Shifted element is ${removedElement}`);
+
+
+// * Dodavanje elemenata na tacno odredjeno mesto
+
+pushArrayExample[2] = 32; // ! ovakav pristup potpuno uklanja element koji je do tog momenta bio na tom indexu i zamenjuje ga novim
+
+
+pushArrayExample[10] = 111;
+
+pushArrayExample[8] = 'hello world';
+
+
+
+// ! SPLICE -> koristi se za dosta stvari:
+
+// * a) uklanja odredjeni broj elemenata iz niza OD odredjenog indeksa i kreira novi niz od tih obrisanih elemenata:
+
+const langs = ['Java', 'JS', 'C#', 'Swift', 'Python'];
+
+const splicedArr = langs.splice(3, 2);
+
+console.log(langs);
+
+console.log(splicedArr);
+
+
+// * b) moze da se koristi za dodavanje elemenata na tacno odredjeno mesto:
+
+langs.splice(2, 0, 'TypeScript');
+
+console.log(langs);
+
+
+// * c) moze da se koristi za brisanje SVIH elemenata iz niza:
+
+// langs.splice(0);
+
+console.log(langs);
+
+
+// * d) brisanje elemenata od odredjene pozicije pa sve do kraja niza:
+
+// langs.splice(1);
+
+console.log(langs);
+
+splicedArr.splice(1,1);
+
+console.log(splicedArr);
+
+
+// * e) brisanje elemenata sa KRAJA niza prosledjivanjem negativnog indexa
+
+langs.splice(-1,1);
+
+console.log(langs);
+
+
+
+// ! SLICE -> vraca kopiju odredjenog dela niza ili celog niza
+
+const sliceArrayExample = [1,2,3,4,5,6,10,12];
+
+// * a) vracanje kopije DELA niza:
+
+const partOfSliceArray = sliceArrayExample.slice(0, 2);
+
+console.log(sliceArrayExample);
+
+console.log(partOfSliceArray);
+
+
+// * b) vracanje kopije CELOG niza (ali shallow kopije):
+
+const copyOfSliceArray = sliceArrayExample.slice();
+
+sliceArrayExample.push(100);
+
+console.log(copyOfSliceArray);
+
+console.log(sliceArrayExample);
+
+
+
+// ! CONCAT -> funkcija koja spaja elemente nizova
+
+const allArray = sliceArrayExample.concat(copyOfSliceArray, arrayOfNumbers);
+
+console.log(allArray);
+
+
+
+// ! INDEX_OF i LAST_INDEX_OF metode -> metode koje vracaju indekse elemenata
+
+const indexOf100 = allArray.indexOf(100);
+
+console.log(`Index of 100 is ${indexOf100}`);
+
+console.log(`Index of 999 is ${allArray.indexOf(999)}`); // -1
+
+
+// * U slucaju referentnih tipova podataka indexOf i lastIndexOf ne funkcionisu
+
+const myStudents = [
+   {
+      name: 'Pera',
+      age: 25
+   },
+   {
+      name: 'Sara',
+      age: 20
+   },
+   {
+      name: 'Marko',
+      age: 30
+   }
+]
+
+console.log(myStudents.indexOf({
+   name: 'Pera',
+   age: 25
+})); // ! -1 , jer indexOf ne funkcionise nad referentnim tipovima
+
+
+console.log(`Last index of 10 is ${allArray.lastIndexOf(10)}`);
+
+
+
+// ! FIND i FIND_INDEX metode
+
+// ! FIND -> vraca PRVI element pronadjen na osnovu nekog uslova pretrage
+
+const sara = myStudents.find((student) => {
+   return student.name === 'Sara';
+});
+
+console.log(sara);
+
+const pera = myStudents.find(student => student.name === 'Pera');
+
+console.log(pera);
+
+const studentOfAge30 = myStudents.find(student => student.age === 30);
+
+console.log(studentOfAge30);
+
+
+// ! FIND_INDEX -> vraca indeks elementa koji trazimo na osnovu nekog uslova pretrage
+
+const idxOfMarko = myStudents.findIndex(student => student.name === 'Marko');
+
+console.log(`Index of Marko in students array is ${idxOfMarko}`); 
+
+
+
+
+// ! INCLUDES -> metoda proverava da li odredjeni element postoji u nizu
+
+const is100 = allArray.includes(100);
+
+const is87 = allArray.includes(87);
+
+console.log(is100);
+
+console.log(is87);
+
+const odgovor = is100 
+   ? `100 is in array` 
+   : `100 is not in array`;
+
+console.log(odgovor);
+
+
+// * Provera da li odredjeni element postoji u nizu:
+
+   // a) includes()
+   // b) indexOf()
+
+console.log(allArray.indexOf(100) !== -1);
+
+
+
+// ! Homework -> 9. cas JS-a (28. cas) (19.01.2023.)
+/**
+ *  1. Kreirati niz sa artiklima u radnji (svaki artikl ima svoj naziv i svoju cenu)
+ *  2. Dodati u niz artikala jos 2 elementa, jedan na pocetak, a drugi na kraj niza 
+ *  3. Na trece mesto u nizu dodati novi artikl, ali tako da se trenutno treci element NE OBRISE, vec samo pomeri za jedno mesto udesno
+ *  4. Obrisati poslednji element iz niza
+ *  5. Kreirati novi niz na osnovu samo poslednja tri elementa iz artikala
+ *  6. Iz tog novog niza, odvojiti samo prva dva elementa u novi niz
+*/
+
+const articles = [
+   {
+       name: 'Bread',
+       price: 50
+   },
+   {
+       name: 'Bannanas',
+       price: 30
+   },
+   {
+       name: 'Yogurt',
+       price: 10
+   }
+]
+
+// 2.
+articles.push({
+   name: 'Milk',
+   price: 6
+});
+
+articles.unshift({
+   name: 'Chocolate',
+   price: 12.55
+});
+
+
+// 3.
+articles.splice(2,0, {
+   name: 'Orange Juice',
+   price: 50
+});
+
+console.log('articles', articles);
+
+
+// 4.
+
+// articles.pop();
+
+articles.splice(-1,1);
+
+console.log('articles', articles);
+
+
+// 5.
+
+const lastThreeArticles = articles.slice(-3);
+
+console.log(lastThreeArticles);
+
+// 6.
+
+const firstTwoArticles = lastThreeArticles.slice(0,2);
+
+console.log(firstTwoArticles);
