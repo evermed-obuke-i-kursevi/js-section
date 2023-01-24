@@ -1799,3 +1799,348 @@ console.log(lastThreeArticles);
 const firstTwoArticles = lastThreeArticles.slice(0,2);
 
 console.log(firstTwoArticles);
+
+
+// ! 10. cas JS-a (29. cas) (24.01.2023.)
+
+console.log('--------------- 10. cas JS-a (29. cas) (24.01.2023.) --------------');
+
+
+// ! ForEach -> metoda koja se poziva nad svakim elementom nekog niza
+
+const myTransactions = [100, -30, 200, -40, -150];
+
+// * 1. nacin (uz FOR OF)
+
+for (let transaction of myTransactions) {
+   console.log(`${transaction} $`);
+}
+
+
+// * 2. nacin (uz obicnu FOR petlju)
+
+for (let i = 0; i < myTransactions.length; i++) {
+   console.log(`${myTransactions[i]}`);
+}
+
+// * 3. nacin (uz FOR EACH metodu)
+
+// myTransactions.forEach((transaction, i) => {
+//    console.log(`${++i}: ${transaction} $`);
+// });
+
+myTransactions.forEach((transaction, i) => console.log(`${++i}: ${transaction}`));
+
+
+// TODO Na svaku transakciju ukalkulisemo proviziju bankomata od 5 % i te transakcije sa provizijom dodamo u novi niz
+
+const bankProvision = 0.05;
+const noviNiz = [];
+
+myTransactions.forEach(transaction => {
+   const provision = transaction * bankProvision;
+   const totalTransaction = transaction + provision;
+   noviNiz.push(totalTransaction);
+});
+
+console.log(`Transactions with provisions array: ${noviNiz}`);
+
+
+noviNiz.forEach((trans, i) => {
+   console.log(`${++i}: ${trans}`);
+});
+
+
+// TODO hocemo da za svaku transakciju (sa provizijom) zabelezimo njenu poziciju i iznos i to dodamo u nekiNoviNiz
+
+const nekiNoviNiz = [];
+
+noviNiz.forEach((transaction, i) => {
+   const ob = {
+      position: i+1,
+      value: `${transaction} $`
+   }
+   nekiNoviNiz.push(ob);
+});
+
+
+
+// ! MAP -> metoda koja prihvata kao svoj argument funkciju koja transformise svaki element niza i vraca NOVI niz (transformisani niz)
+
+let letters = ['a', 'b', 'c', 'd'];
+
+// hint: uz funkciju toUpperCase() mozemo svaki malo slovo pretvoriti u veliko
+
+const bigLetters = letters.map(letter => {
+   return letter.toUpperCase();
+});
+
+console.log(letters);
+console.log(bigLetters);
+
+const normalPrices = [30.5, 20, 15, 7.4, 10];
+
+const pdv = 0.08;
+
+const updatedPrices = normalPrices.map(price => (price * (1 + pdv)).toFixed(2));
+
+console.log(updatedPrices);
+
+const basketItems = [
+   {
+      name: 'Chair',
+      price: 50.0
+   },
+   {
+      name: 'Table',
+      price: 100.0
+   },
+   {
+      name: 'Lamp',
+      price: 20.0
+   }
+];
+
+// * 1. nacin (uz npr ForEach metodu)
+
+// let onlyNames = [];
+
+// basketItems.forEach(item => onlyNames.push(item.name));
+
+// console.log(onlyNames);
+
+// * 2. nacin (uz npr map metodu)
+
+const namesArray = basketItems.map(item => item.name);
+
+console.log(`Items names:`, namesArray);
+
+
+
+// ! SORT -> metoda koja sortira i MUTIRA (modifikuje) niz nad kojim se ova metoda i poziva
+
+let brojevi = [10, 23, 11, 4.2, 5, 123, 55, 0];
+
+// * 1. nacin sortiranja (Ascending sort)
+
+// brojevi.sort((a, b) => {
+//    if (a > b) {
+//       return 1;
+//    } else if (a === b) {
+//       return 0;
+//    } else {
+//       return -1;
+//    }
+// });
+
+// console.log(brojevi);
+
+// * 2. nacin sortiranja (Ascending sort)
+
+brojevi.sort((a, b) => {
+   return a-b;
+});
+
+console.log(brojevi);
+
+
+// * Descending Sort
+
+// brojevi.sort((a, b) => {
+//    return b-a;
+// });
+
+// console.log(brojevi);
+
+
+// ! REVERSE -> revers-uje niz u kontra pravcu
+
+console.log(brojevi.reverse());
+
+
+
+// ! FILTER -> metoda koja filtrira niz vracajuci samo elemente koji prolaze (zadovoljavaju) odredjeni logicki uslov
+
+const greaterThan10Nums = brojevi.filter(broj => broj >= 10);
+
+console.log(greaterThan10Nums);
+
+const randomWords = ['Marko', 'Mars', 'Pluton', 'JavaScript'];
+
+const onlyMWords = randomWords.filter(word => word[0] === 'M');
+
+console.log(onlyMWords);
+
+
+
+// * podsetnik: sumirati (sabrati) sve elemente u nizu BROJEVI
+
+// * 1. nacin (uz FOR OF petlju npr)
+// let zbirBrojeva = 0;
+
+// for (let br of brojevi) {
+//    zbirBrojeva += br;
+// }
+
+// console.log(`Zbir svih brojeva je ${zbirBrojeva}`);
+
+
+// ! REDUCE -> metoda koja redukuje niz na jednu vrednost na osnovu uslova koji zadamo
+
+let reduceSum = brojevi.reduce((prevValue, currValue) => {
+   return prevValue += currValue;
+}, 0);
+
+console.log(`Reduce sum of brojevi is ${reduceSum}`);
+
+
+
+// ! FLAT -> metoda koja na povrsinu niza PRVOG reda izvlaci elemente podnizova
+
+const arrWithNestedArrays = [
+   [4, 5, 1],
+   ['Java', 10, 'Neptun'],
+   8, 10
+]
+
+console.log(arrWithNestedArrays);
+
+const flatArray1 = arrWithNestedArrays.flat(1);
+
+console.log(flatArray1);
+
+
+const arrWithNestedArraysDeep = [
+   [30, 201, 1, ['java', true], 50, 'hello', [8, 7]]
+]
+
+const flatArray2 = arrWithNestedArraysDeep.flat(2);
+
+console.log(flatArray2);
+
+
+// ! Chaining u JS-u:
+
+// const veciOd10Brojevi = brojevi.filter(broj => broj > 10);
+
+// console.log(veciOd10Brojevi);
+
+// const pomnozeniSa2 = veciOd10Brojevi.map(broj => broj * 2);
+
+// console.log(pomnozeniSa2);
+
+// const zbirPomnozenihSa2 = pomnozeniSa2.reduce((prevVal, currVal) => {
+//    return prevVal += currVal;
+// }, 0);
+
+// console.log(zbirPomnozenihSa2);
+
+const chainningResult = brojevi
+   .filter(broj => broj > 10)
+   .map(broj => broj * 2)
+   .reduce((prevVal, currVal) => prevVal + currVal);
+
+console.log(chainningResult);
+
+const accounts = [
+   {
+      owner: 'Marko Markovic',
+      age: 55,
+      city: 'Novi Sad',
+      transactions: [50, 30, -150, 300, -20]
+   },
+   {
+      owner: 'Sara Saric',
+      age: 25,
+      city: 'Novi Sad',
+      transactions: [100, 30, -150, 300, -220]
+   },
+   {
+      owner: 'Petar Petrovic',
+      age: 55,
+      city: 'Novi Sad',
+      transactions: [500, 30, -10, 300, -20]
+   },
+]
+
+
+const saldo = accounts
+   .map(account => account.transactions)
+   .flat()
+   .reduce((prevVal, currVal) => prevVal + currVal);
+
+console.log(saldo);
+
+
+// ! Homework -> 10. cas JS-a (29. cas) (24.01.2023.)
+/**
+ *  1. Kreirati poseban niz koji je spoj poslednja dva niza dobijena (iz 5. i 6. zadatka iz PRETHODNOG domaceg)
+ *  2. U nizu artikala, pronaci artikl koji se naziva 'Yogurt' i smestiti ga u varijablu 'yogurt'
+ *  3. Pronaci indeks artikla koji ima cenu 30
+ *  4. Nad svakim artiklom dodeliti novi property 'formatedPrice' koji ce sadrzati prefiks '$' i cenu tog artikla
+ *  5. Kreirati novi niz koji ce sadrzati sve cene svakog artikla.
+ *  6. Proveriti da li se u novom nizu svih cena nalazi ijedna cena koja iznosi 7 i ispisati odgovor u formatu 'cena 7 postoji' ili 'cena 7 ne postoji'
+ *  7. Za svaku cenu obracunati dodatan PDV (npr. od 8 %) i dodati ga na postojecu cenu i za svaku cenu dodati njen redni broj u nizu
+*/
+
+// 1.
+
+const concatedArticles = lastThreeArticles.concat(firstTwoArticles);
+
+console.log('Concated articles', concatedArticles);
+
+
+// 2.
+
+const yogurt = articles.find(article => article.name === 'Yogurt');
+
+console.log('Yogurt', yogurt);
+
+
+// 3.
+
+const ofPrice30 = articles.findIndex(article => article.price === 30);
+
+console.log('Off price 30', ofPrice30);
+
+articles.splice(ofPrice30, 1);
+
+console.log(articles);
+
+
+// 4.
+
+articles.forEach(article => article.formattedPrice = `$ ${article.price}`);
+
+console.log(articles);
+
+
+
+// 5.
+
+const allPrices = [];
+articles.forEach(article => allPrices.push(article.price));
+
+console.log(allPrices);
+
+
+// 6.
+
+const isPrice7 = allPrices.includes(7) ? 'cena 7 postoji' : 'cena 7 ne postoji';
+
+console.log(isPrice7);
+
+
+// 7.
+
+const pricesWithPDV = [];
+
+allPrices.forEach((price, idx) => {
+    const priceObj = {
+        number: idx+1,
+        price: price * (1+0.08)
+    }
+    pricesWithPDV.push(priceObj);
+})
+
+console.log(pricesWithPDV);
