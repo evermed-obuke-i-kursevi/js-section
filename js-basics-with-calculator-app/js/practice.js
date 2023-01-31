@@ -2791,3 +2791,275 @@ const findAnAverageFunc = (student) => {
 }
 
 console.log(`${peraOb.name} has an average grade of ${findAnAverageFunc(peraOb)}`);
+
+
+
+// ! 12. cas JS-a (31. cas) (31.01.2023.)
+
+console.log('--------------- 12. cas JS-a (31. cas) (31.01.2023.) --------------');
+
+
+// ! OBJECTS 
+
+const studentObExample = {
+   name: 'Marko Markovic',
+   age: 25,
+   courses: ['OOP Java', '.NET Core', 'Full-Stack WEB dev'],
+   gender: 'male',
+   isStudent: true,
+   address: {
+      street: 'Bul. Vojvode Stepe 44',
+      zipCode: 21000,
+      city: 'Novi Sad',
+      apartment: {
+         number: 111,
+         floor: 4
+      }
+   }
+}
+
+console.log(studentObExample.address.apartment.floor);
+
+// ! Studying ce sada biti metoda objekta studentObExample
+studentObExample.studying = function() {
+   console.log(`I am studying!`);
+}
+
+studentObExample.studying();
+
+
+// * Menjanje vrednosti postojecih property-a objekta
+
+studentObExample.isStudent = false;
+
+
+studentObExample.address.apartment.number = 55;
+
+
+
+// * Brisanje property-a objekta
+
+delete studentObExample.gender;
+
+console.log(studentObExample);
+
+
+
+
+// ! SQUARE BRACKET sintaksa (sintaksu uglastih zagrada)
+
+console.log(`Student name is ${studentObExample['name']}`);
+
+let studentCourses = 'courses';
+
+console.log(`Courses of student ${studentObExample[studentCourses]}`);
+
+for (let property in studentObExample) {
+   console.log(studentObExample[property]);
+}
+
+
+let avgGrade = 'averageGrade';
+
+studentObExample[avgGrade] = 8.98;
+
+console.log(studentObExample);
+
+
+
+// ! JSON interfejs --> interfejs koji vam pruza razne metode, kao npr:
+
+// 1. PARSE --> daje mogucnost da string (zapisan u nekom JSON formatu) parsirate u normalan JS objekat
+
+let exampleString = '{"id": 101, "name": "Petar Petrovic", "isStudent": true}';
+
+let exampleOb = JSON.parse(exampleString);
+
+console.log(exampleOb);
+
+
+// 2. STRINGIFY --> daje mogucnost da JSON objekat pretvorite u string zapis
+
+exampleOb.age = 30;
+
+let backToString = JSON.stringify(exampleOb);
+
+console.log(backToString);
+
+
+
+// ! KOPIRANJE OBJEKATA
+
+const car = {
+   name: 'Audi A6',
+   gasTypes: ['diesel', 'gas'],
+   gears: 6
+}
+
+const newCar = car;
+
+car.gears = 5;
+
+console.log(car);
+console.log(newCar);
+
+
+// * SPREAD OPERATOR se moze koristiti za pravljenje SHALLOW kopija
+
+const newCar2 = {...car};
+
+newCar2.name = 'BMW X6';
+
+console.log(car);
+console.log(newCar2);
+
+newCar.gasTypes.push('benzin');
+
+console.log(car);
+console.log(newCar2);
+
+
+// * Kreiranje DEEP kopija (kopiranje i primitivnih i referentnih tipova podataka)
+
+const newCar3 = {
+   ...car,
+   gasTypes: [...car.gasTypes]
+}
+
+console.log(newCar3);
+
+newCar3.gasTypes.push('eletric power');
+
+console.log(car);
+console.log(newCar3);
+
+
+const newCar4 = structuredClone(car); // *****
+
+newCar4.owner = 'Pera Peric';
+
+console.log(car);
+console.log(newCar4);
+
+newCar4.gasTypes.push('atomic power');
+
+console.log(car);
+console.log(newCar4);
+
+
+
+// ! Object Destructing
+
+const book = {
+   id: Math.ceil(Math.random() * 100), // 0.3123123213123 ==> 31.23123213123 ==> 32
+   bookName: 'Harry Potter',
+   writter: 'J.K. Rowling',
+   editions: [1,2,3,4,5,6],
+   pages: 550
+}
+
+// 1. slucaj:
+
+// const bookEditions = book.editions; // ! stariji nacin
+
+const {editions} = book; // ! naziv varijable sa leve strane (od znaka =) mora da se POKLAPA SA nazivom property-a iz objekta
+
+console.log(editions);
+
+// 2. slucaj:
+
+const {id, bookName, writter} = book;
+
+console.log(`ID of book: ${id} with name ${bookName} with writter ${writter}`);
+
+// 3. slucaj:
+
+const {pages, ...otherProps} = book;
+
+console.log(`${bookName} has ${pages} pages.`);
+
+console.log(otherProps);
+
+
+
+
+// ! Proveravanje da li odredjeni property postoji u nekom objektu
+
+// * 1. nacin -> uz IN rezervisanu rec
+
+if ('numberOfPages' in book) {
+   console.log(`Property numberOfPages exists in this book!`);
+}
+
+if ('pages' in book) {
+   console.log(`Property pages exists in this book!`);
+}
+
+if (!('publisher' in book)) {
+   book.publisher = 'Vulkan DOO';
+}
+
+console.log(book);
+
+
+// 2. nacin -> uz proveru da li je nesto undefined
+
+// console.log(book.available);
+
+if (book.available === undefined) {
+   book.available = true;
+} else {
+   book.available = false;
+}
+
+console.log(book);
+
+
+
+// ! THIS referenca
+// * THIS je referenca koja ukazuje na objekat koji odredjenu metodu i poziva
+
+const song = {
+   title: 'Whole Lotta Rosie',
+   artist: 'AC/DC',
+   play: function() {
+      console.log(`Whole Lotta Rosie by AC/DC is now playing...`);
+   }
+}
+
+song.play();
+
+const song1 = {
+   title: 'Best of you',
+   artist: 'Foo Fighters',
+   play: function() {
+      console.log(`${this.title} by ${this.artist} is now playing...`);
+   }
+}
+
+// song1.play(); // ! ako bismo probali samo ovo: console.log(`${title} by ${artist} is now playing...`); dobili bi ReferenceError: title is not defined
+
+song1.play();
+
+song1.pause = function() {
+   console.log(`Song with name: ${this.title} has been paused.`);
+}
+
+song1.pause();
+
+
+
+const album = {
+   artist: 'AC/DC',
+   name: 'High Voltage',
+   songs: ['High Voltage', 'Are you ready?', 'Thunderstruck']
+}
+
+album.listAllSongs = function() {
+   this.songs.forEach((song, idx) => {
+      console.log(`Song ${++idx}: ${song}`);
+   })
+}
+
+album.listAllSongs();
+
