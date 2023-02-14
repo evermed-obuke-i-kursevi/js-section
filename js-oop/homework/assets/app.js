@@ -10,6 +10,13 @@ const isRegistered = user1.register('John Wick', 'john.wick1', 'johnwick123'); /
 
 // user1.login('john.wick1', 'johnwick123'); // * attempt with correct credentials
 
+const isRegisteredAdmin = admin.register('Admin Adminic', 'superadmin', 'admin1234');
+
+if (isRegisteredAdmin) {
+    admin.login('superadmin', 'admin1234');
+    admin.removeUser(user1.userName);
+}
+
 // user1.newPassword = 'test123';
 if (isRegistered) {
 
@@ -26,5 +33,3 @@ if (isRegistered) {
     console.log(`User ${user1.userName} has ${user1.getPostNumber} posts`);
 
 }
-
-admin.removeUser(user1.userName);

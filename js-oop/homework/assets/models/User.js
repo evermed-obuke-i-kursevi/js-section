@@ -45,4 +45,8 @@ export default class User {
         console.log(`Password has been successfully changed!`);
     }
 
+    get currentPassword() {
+        return this.#password;
+    }
+
 }
